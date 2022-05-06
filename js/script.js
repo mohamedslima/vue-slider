@@ -69,6 +69,18 @@ const app = new Vue (
                     this.currentSlide = this.slides.length - 1; // ultima
                 }
             },
+            // Slide successiva
+            nextSlide(){
+                this.currentSlide ++; // successiva
+
+                // se sono all'ultima, mi posiziono sulla prima
+                if(this.currentSlide > this.slides.length - 1){
+                    this.currentSlide = 0;
+                }
+            },
+            changeImg(index){
+                this.currentSlide = index;
+            }
         },
     }
 )
