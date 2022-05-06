@@ -7,9 +7,51 @@
     <title>Slider</title>
     <!-- Link CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- Link VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </head>
 <body>
-    
+    <div id="root">
+        <div class="container">
+            <div class="items">                
+                <!--
+                <div class="item active">
+                    <img src="./img/01.jpg" alt="">
+                    <div class="text">
+                        <h3>Lorem</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.</p>
+                    </div>
+                </div>
+                -->
+                <div class="item active">
+                    <!-- prende l'indice dell'elemento delle slide e la mostra nel settore principale -->
+                    <img :src="slides[currentSlide].image" :alt="slides[currentSlide].title"/>
+                    <div class="text">
+                        <h3>{{ slides[currentSlide].title }}</h3>
+                        <p>{{ slides[currentSlide].text }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thumbs">
+                <!-- i 2 tasti al clic svolgone la funzione -->
+                <div @click="prevSlide()" class="prev"></div>
+                <div @click="nextSlide()" class="next"></div>
+                <!--
+                <div class="thumb active">
+                    <img src="./img/01.jpg" alt="">
+                </div>
+                -->  
+                <div v-for="(slide, index) in slides" 
+                     class="thumb" 
+                     :class="(index == currentSlide) ? 'active' : ''"
+                     @click="changeImg(index)">
+                     <!-- aggiungo l'immagine -->
+                    <img :src="slide.image" alt="slide.title"/>
+                </div>                
+            </div>
+        </div>
+    </div>
 
     <script src="js/script.js" type="text/javascript"></script>
 </body>
